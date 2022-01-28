@@ -14,12 +14,17 @@ const btnValues = [
 
 function App() {
   const [value, setValue] = React.useState(0);
+  const [clear, setClear] = React.useState(false);
 
   const numClickHandler = (e) => {
     const numPressed = e.target.innerHTML;
-    // fix integer issue
-    if(value === 0 || Number.isInteger(value)) {
+    if(
+      value === 0 ||
+      Number.isInteger(value) ||
+      (value % 1 !== 0 && clear === true)
+    ) {
       setValue(numPressed);
+      setClear(false);
     }
     else {
       setValue(value + numPressed);
@@ -37,6 +42,7 @@ function App() {
   };
 
   const equalsClickHandler = () => {
+    setClear(true);
     const requestOptions = {
       method: 'POST',
       headers: {
