@@ -17,11 +17,11 @@ function App() {
 
   const numClickHandler = (e) => {
     const numPressed = e.target.innerHTML;
-    if(value === 0) {
+    if(value === 0 || Number.isInteger(value)) {
       setValue(numPressed);
     }
     else {
-      setValue(value + ' ' + numPressed);
+      setValue(value + numPressed);
     }
   };
   
@@ -30,7 +30,7 @@ function App() {
 
   const operatorClickHandler = (e) => {
     const operatorPressed = e.target.innerHTML;
-    setValue(value + ' ' + operatorPressed);
+    setValue(value + operatorPressed);
   };
 
   const equalsClickHandler = () => {
