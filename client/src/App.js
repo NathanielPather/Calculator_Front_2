@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Wrapper from "./components/Wrapper";
 import Screen from "./components/Screen";
@@ -14,59 +13,19 @@ const btnValues = [
   ["0", ".", "=", "+"]
 ];
 
-const toLocaleString = (num) =>
-  String(num).replace(/(?<!\..*)(\d)(?=(?:\d{3})+(?:\.|$))/g, "$1 ");
-
-const removeSpaces = (num) => num.toString().replace(/\s/g, "");
-
 function App() {
-  let [calc, setCalc] = useState({
-    sign: "",
-    num: 0,
-    res: 0,
-  });
-
   const numClickHandler = (e) => {
-    e.preventDefault();
-    const value = e.target.innerHTML;
-
-    if (calc.num.length < 16) {
-      setCalc({
-        ...calc,
-        num:
-          calc.num === 0 && value === "0"
-            ? "0"
-            : calc.num % 1 === 0
-            ? Number(calc.num + value)
-            : calc.num + value,
-        res: !calc.sign ? 0 : calc.res,
-      });
-    }
+    console.log('number clicked')
   };
-
-  const commaClickHandler = (e) => {
-    e.preventDefault();
-    const value = e.target.innerHTML;
   
-    setCalc({
-      ...calc,
-      num: !calc.num.toString().includes(".") ? calc.num + value : calc.num,
-    });
+  const commaClickHandler = (e) => {
   };
 
   const signClickHandler = (e) => {
-    e.preventDefault();
-    const value = e.target.innerHTML;
-  
-    setCalc({
-      ...calc,
-      sign: value,
-      res: !calc.res && calc.num ? calc.num : calc.res,
-      num: 0,
-    });
   };
 
   const equalsClickHandler = () => {
+    console.log('clicked');
     const requestOptions = {
       method: 'POST',
   };
@@ -78,7 +37,7 @@ function App() {
 
   return (
     <Wrapper>
-      <Screen value={calc.num ? calc.num : calc.res} />
+      <Screen value={0} />
       <ButtonBox>
         {
           btnValues.flat().map((btn, i) => {
