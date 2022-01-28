@@ -16,16 +16,17 @@ function App() {
   const [value, setValue] = React.useState(0);
 
   const numClickHandler = (e) => {
-    console.log('number clicked');
     const numPressed = e.target.innerHTML;
-    console.log(numPressed);
-    setValue(numPressed);
+    setValue(value + ' ' + numPressed);
   };
   
   const decimalClickHandler = (e) => {
   };
 
   const operatorClickHandler = (e) => {
+    const operatorPressed = e.target.innerHTML;
+    console.log(operatorPressed);
+    setValue(value + ' ' + operatorPressed);
   };
 
   const equalsClickHandler = () => {
