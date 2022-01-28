@@ -30,7 +30,6 @@ function App() {
 
   const operatorClickHandler = (e) => {
     const operatorPressed = e.target.innerHTML;
-    console.log(operatorPressed);
     setValue(value + ' ' + operatorPressed);
   };
 
