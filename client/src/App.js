@@ -17,7 +17,12 @@ function App() {
 
   const numClickHandler = (e) => {
     const numPressed = e.target.innerHTML;
-    setValue(value + ' ' + numPressed);
+    if(value === 0) {
+      setValue(numPressed);
+    }
+    else {
+      setValue(value + ' ' + numPressed);
+    }
   };
   
   const decimalClickHandler = (e) => {
@@ -30,15 +35,19 @@ function App() {
   };
 
   const equalsClickHandler = () => {
-    setValue(0);
-    console.log('clicked');
     const requestOptions = {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify({
+        value: value
+      })
   };
   fetch('http://localhost:3000/post', requestOptions)
       .then(response => response.json())
-      .then(res => console.log(res))
-      .then(r => <Screen value={r} />)
+      .then(solution => setValue(solution.message));
   };
 
   return (
