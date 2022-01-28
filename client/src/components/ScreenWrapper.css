@@ -1,0 +1,12 @@
+.screenwrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.clearbutton {
+    flex: 25%;
+}
+
+.screen {
+    flex: 75%;
+}

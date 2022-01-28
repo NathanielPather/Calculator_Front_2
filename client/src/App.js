@@ -1,12 +1,12 @@
 import './App.css';
 import Wrapper from "./components/Wrapper";
-import Screen from "./components/Screen";
+import ScreenWrapper from "./components/ScreenWrapper";
 import ButtonBox from "./components/ButtonBox";
 import Button from "./components/Button";
 import React, { useState } from "react";
 
 const btnValues = [
-  [7, "8", "9", "/"],
+  ["7", "8", "9", "/"],
   ["4", "5", "6", "X"],
   ["1", "2", "3", "-"],
   ["0", ".", "=", "+"]
@@ -15,7 +15,7 @@ const btnValues = [
 function App() {
   const [value, setValue] = React.useState(0);
   const [clear, setClear] = React.useState(false);
-
+  
   const numClickHandler = (e) => {
     const numPressed = e.target.innerHTML;
     if(
@@ -60,7 +60,9 @@ function App() {
 
   return (
     <Wrapper>
-      <Screen 
+      <ScreenWrapper 
+        setValue={setValue}
+        setClear={setClear}
         value={value}
       />
       <ButtonBox>
