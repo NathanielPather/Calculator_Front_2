@@ -17,6 +17,7 @@ function App() {
 
   const numClickHandler = (e) => {
     const numPressed = e.target.innerHTML;
+    // fix integer issue
     if(value === 0 || Number.isInteger(value)) {
       setValue(numPressed);
     }
@@ -26,6 +27,8 @@ function App() {
   };
   
   const decimalClickHandler = (e) => {
+    const decimalPressed = e.target.innerHTML;
+    setValue(value + decimalPressed);
   };
 
   const operatorClickHandler = (e) => {
