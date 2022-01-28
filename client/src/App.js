@@ -5,7 +5,6 @@ import ButtonBox from "./components/ButtonBox";
 import Button from "./components/Button";
 import React, { useState } from "react";
 
-
 const btnValues = [
   [7, "8", "9", "/"],
   ["4", "5", "6", "X"],
@@ -14,17 +13,23 @@ const btnValues = [
 ];
 
 function App() {
+  const [value, setValue] = React.useState(0);
+
   const numClickHandler = (e) => {
-    console.log('number clicked')
+    console.log('number clicked');
+    const numPressed = e.target.innerHTML;
+    console.log(numPressed);
+    setValue(numPressed);
   };
   
-  const commaClickHandler = (e) => {
+  const decimalClickHandler = (e) => {
   };
 
-  const signClickHandler = (e) => {
+  const operatorClickHandler = (e) => {
   };
 
   const equalsClickHandler = () => {
+    setValue(0);
     console.log('clicked');
     const requestOptions = {
       method: 'POST',
@@ -37,7 +42,9 @@ function App() {
 
   return (
     <Wrapper>
-      <Screen value={0} />
+      <Screen 
+        value={value}
+      />
       <ButtonBox>
         {
           btnValues.flat().map((btn, i) => {
@@ -50,9 +57,9 @@ function App() {
                   btn === "="
                   ? equalsClickHandler
                   : btn === "/" || btn === "X" || btn === "-" || btn === "+"
-                  ? signClickHandler
+                  ? operatorClickHandler
                   : btn === "."
-                  ? commaClickHandler
+                  ? decimalClickHandler
                   : numClickHandler
                 }
               />
