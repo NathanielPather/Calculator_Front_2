@@ -3,7 +3,7 @@ import Wrapper from "./components/Wrapper";
 import ScreenWrapper from "./components/ScreenWrapper";
 import ButtonBox from "./components/ButtonBox";
 import Button from "./components/Button";
-import React, { useState } from "react";
+import React from "react";
 
 const btnValues = [
   ["7", "8", "9", "/"],
@@ -16,6 +16,10 @@ function App() {
   const [value, setValue] = React.useState(0);
   const [clear, setClear] = React.useState(false);
   
+  /** Handler for number button clicks.
+   * @param {SyntheticEvent} e - Event e.
+   * Prevents number clicks under illegal events.
+   */
   const numClickHandler = (e) => {
     const numPressed = e.target.innerHTML;
     if(
@@ -31,16 +35,29 @@ function App() {
     }
   };
   
+  /** Handler for decimal button clicks.
+   * @param {SyntheticEvent} e - Event e.
+   * Adds a decimal point to current value.
+   */
   const decimalClickHandler = (e) => {
     const decimalPressed = e.target.innerHTML;
     setValue(value + decimalPressed);
   };
 
+  /** Handler for operator button clicks.
+   * @param {SyntheticEvent} e - Event e.
+   * Adds an operator to current value.
+   */
   const operatorClickHandler = (e) => {
     const operatorPressed = e.target.innerHTML;
     setValue(value + operatorPressed);
   };
 
+  /** Handler for equals button clicks.
+   * @param {SyntheticEvent} e - Event e.
+   * Sends post request with equation.
+   * Displays the result as new value.
+   */
   const equalsClickHandler = () => {
     setClear(true);
     const requestOptions = {
